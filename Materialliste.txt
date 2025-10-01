@@ -1,4 +1,6 @@
-Materialliste:
+Material Liste:
+
+Vorhandendes Material:
 
 2 x Räder
 1 x Plattform
@@ -8,3 +10,5 @@ Materialliste:
 1 x Micro Servo SG 90 180 Grad    
 1 x L9110 Dual DC Treiber für 2 Schrittmotoren
 2 X QRT - 1A Reglectance Sensoren
+
+Das wird zusätzlich benötigt:
