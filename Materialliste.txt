@@ -1,0 +1,10 @@
+Materialliste:
+
+2 x Räder
+1 x Plattform
+2 x Antriebsmotoren für die Räder
+1 x Batteriefach für 4 Batterien
+1 x Powerbank
+1 x Micro Servo SG 90 180 Grad    
+1 x L9110 Dual DC Treiber für 2 Schrittmotoren
+2 X QRT - 1A Reglectance Sensoren
