@@ -1,5 +1,8 @@
 #pragma once
 
+#define REMOTEXY_MODE__ESP32CORE_BLE
+#define REMOTEXY_BLUETOOTH_NAME "RemoteXY"
+
 #pragma pack(push, 1)
 uint8_t RemoteXY_CONF[] =   // 62 bytes
   { 255,4,0,0,0,55,0,19,0,0,0,0,24,1,106,200,1,1,4,0,

@@ -2,10 +2,10 @@
 
 namespace bm3 { namespace hardware {
 
-class Peripheral {
+class AbstractPeripheral {
 public:
     virtual void setup() = 0;
-    virtual ~Peripheral() {}
+    virtual ~AbstractPeripheral() {}
 };
 
 }}
