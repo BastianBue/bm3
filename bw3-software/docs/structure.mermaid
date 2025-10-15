@@ -1,0 +1,92 @@
+classDiagram
+    class Peripheral {
+        <<abstract>>
+        +setup()
+    }
+    class Motor {
+        +pinA
+        +pinB
+        +enablePin
+        +forward()
+        +backward()
+        +stop()
+        +Motor(pinA, pinB, enablePin)
+        +setup()
+    }
+    class ReflectanceSensor {
+        +pin
+        +readValue()
+        +ReflectanceSensor(pin)
+        +setup()
+    }
+    class BallShooter {
+        <<abstract>>
+        +pins
+        +shoot()
+        +BallShooter(pins)
+        +setup()
+    }
+    class ServoBallShooter {
+        +pins
+        +shoot()
+        +ServoBallShooter(pins)
+        +setup()
+    }
+    Peripheral <|-- Motor
+    Peripheral <|-- ReflectanceSensor
+    Peripheral <|-- BallShooter
+    BallShooter <|-- ServoBallShooter
+    Peripheral <|-- ServoBallShooter
+
+    class State {
+        <<enum>>
+        DEFAULT
+        LINE_CROSSED
+    }
+
+    class InputInterpreter {
+        <<abstract>>
+        +leftMotor: Motor
+        +rightMotor: Motor
+        +leftSensor: ReflectanceSensor
+        +rightSensor: ReflectanceSensor
+        +ballShooter: BallShooter
+        +interpretInput()
+        +InputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter)
+    }
+    class SliderInputInterpreter {
+        +slider1Value
+        +slider2Value
+        +pinList
+        +interpretInput()
+        +SliderInputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter, ...)
+    }
+    class JoystickInputInterpreter {
+        +joystickX
+        +joystickY
+        +interpretInput()
+        +JoystickInputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter, ...)
+    }
+    class OverriddenInputInterpreter {
+        +leftMotor: Motor
+        +rightMotor: Motor
+        +leftSensor: ReflectanceSensor
+        +rightSensor: ReflectanceSensor
+        +ballShooter: BallShooter
+        +interpretInput()
+        +OverriddenInputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter)
+    }
+    InputInterpreter <|-- SliderInputInterpreter
+    InputInterpreter <|-- JoystickInputInterpreter
+    InputInterpreter <|-- OverriddenInputInterpreter
+
+    class StateMachine {
+        +currentState: State
+        +setState()
+        +getState()
+    }
+    class InputInterpreterFactory {
+        +createInterpreter(state, leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter): InputInterpreter
+    }
+    StateMachine --> InputInterpreterFactory : uses
+    InputInterpreterFactory --> InputInterpreter : creates & injects all components
