@@ -1,10 +1,10 @@
 #pragma once
-#include "core/InputInterpreter.h"
-#include "core/SliderInputInterpreter.h"
-#include "hardware/Motor.h"
-#include "hardware/ReflectanceSensor.h"
-#include "hardware/BallShooter.h"
-#include "types/State.h"
+#include "InputInterpreter.h"
+#include "SliderInputInterpreter.h"
+#include "Motor.h"
+#include "ReflectanceSensor.h"
+#include "BallShooter.h"
+#include "State.h"
 
 namespace bm3 { namespace control {
 

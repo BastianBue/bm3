@@ -1,7 +1,7 @@
 #pragma once
-#include "hardware/Motor.h"
-#include "hardware/ReflectanceSensor.h"
-#include "hardware/BallShooter.h"
+#include "Motor.h"
+#include "ReflectanceSensor.h"
+#include "BallShooter.h"
 
 namespace bm3 { namespace core {
 

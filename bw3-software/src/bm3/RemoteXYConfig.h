@@ -1,7 +1,8 @@
-#pragma once
-
 #define REMOTEXY_MODE__ESP32CORE_BLE
 #define REMOTEXY_BLUETOOTH_NAME "RemoteXY"
+
+#include <BLEDevice.h>
+#include <RemoteXY.h>
 
 #pragma pack(push, 1)
 uint8_t RemoteXY_CONF[] =   // 62 bytes
@@ -11,11 +12,10 @@ uint8_t RemoteXY_CONF[] =   // 62 bytes
   31,0 };
 
 struct {
-  uint8_t switch_02; // =1 if switch ON and =0 if OFF, from 0 to 1
-  int8_t slider_01; // from -100 to 100
-  int8_t slider_02; // from -100 to 100
-  uint8_t button_01; // =1 if button pressed, else =0, from 0 to 1
-  uint8_t connect_flag;  // =1 if wire connected, else =0
+    uint8_t switch_02; // =1 if switch ON and =0 if OFF, from 0 to 1
+    int8_t slider_01; // from -100 to 100
+    int8_t slider_02; // from -100 to 100
+    uint8_t button_01; // =1 if button pressed, else =0, from 0 to 1
+    uint8_t connect_flag;  // =1 if wire connected, else =0
 } RemoteXY;
 #pragma pack(pop)
-

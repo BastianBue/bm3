@@ -1,3 +1,5 @@
+#ifndef BM3_HARDWARE_ABSTRACTPERIPHERAL_H
+#define BM3_HARDWARE_ABSTRACTPERIPHERAL_H
 #pragma once
 
 namespace bm3 { namespace hardware {
@@ -9,3 +11,5 @@ public:
 };
 
 }}
+
+#endif // BM3_HARDWARE_ABSTRACTPERIPHERAL_H
