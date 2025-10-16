@@ -1,9 +1,9 @@
 #pragma once
-#include "Motor.h"
-#include "ReflectanceSensor.h"
-#include "BallShooter.h"
+#include "peripheral/Motor.h"
+#include "peripheral/ReflectanceSensor.h"
+#include "peripheral/BallShooter.h"
 
-namespace bm3 { namespace core {
+namespace bm3 { namespace input {
 
 class InputInterpreter {
 public:

@@ -1,6 +1,6 @@
 #include "BallShooter.h"
 
-namespace bm3 { namespace hardware {
+namespace bm3 { namespace peripheral {
 
 // ...BallShooter implementation...
 

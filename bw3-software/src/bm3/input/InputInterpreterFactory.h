@@ -1,12 +1,12 @@
 #pragma once
-#include "InputInterpreter.h"
-#include "SliderInputInterpreter.h"
-#include "Motor.h"
-#include "ReflectanceSensor.h"
-#include "BallShooter.h"
-#include "State.h"
+#include "input/InputInterpreter.h"
+#include "input/SliderInputInterpreter.h"
+#include "peripheral/Motor.h"
+#include "peripheral/ReflectanceSensor.h"
+#include "peripheral/BallShooter.h"
+#include "state/State.h"
 
-namespace bm3 { namespace control {
+namespace bm3 { namespace input {
 
 class InputInterpreterFactory {
 public:

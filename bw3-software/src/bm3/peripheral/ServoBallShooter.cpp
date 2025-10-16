@@ -1,6 +1,6 @@
 #include "ServoBallShooter.h"
 
-namespace bm3 { namespace hardware {
+namespace bm3 { namespace peripheral {
 
 // ...ServoBallShooter implementation...
 

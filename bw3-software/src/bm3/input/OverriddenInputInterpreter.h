@@ -1,7 +1,7 @@
 #pragma once
-#include "InputInterpreter.h"
+#include "input/InputInterpreter.h"
 
-namespace bm3 { namespace core {
+namespace bm3 { namespace input {
 
 class OverriddenInputInterpreter : public InputInterpreter {
 public:

@@ -1,6 +1,6 @@
 #include "ReflectanceSensor.h"
 
-namespace bm3 { namespace hardware {
+namespace bm3 { namespace peripheral {
 
 // ...ReflectanceSensor implementation...
 

@@ -1,9 +1,9 @@
-#include "InputInterpreterFactory.h"
-#include "SliderInputInterpreter.h"
-#include "OverriddenInputInterpreter.h"
-#include "State.h"
+#include "input/InputInterpreterFactory.h"
+#include "input/SliderInputInterpreter.h"
+#include "input/OverriddenInputInterpreter.h"
+#include "state/State.h"
 
-namespace bm3 { namespace control {
+namespace bm3 { namespace input {
 
 bm3::core::InputInterpreter* InputInterpreterFactory::createInterpreter(
     bm3::types::State state,

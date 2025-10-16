@@ -1,6 +1,6 @@
 #pragma once
 
-namespace bm3 { namespace core {
+namespace bm3 { namespace input {
 
 class JoystickInputInterpreter {
   // ...empty JoystickInputInterpreter class...

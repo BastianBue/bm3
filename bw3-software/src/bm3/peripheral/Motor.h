@@ -1,7 +1,7 @@
 #pragma once
 #include "AbstractPeripheral.h"
 
-namespace bm3 { namespace hardware {
+namespace bm3 { namespace peripheral {
     class Motor : public AbstractPeripheral {
     public:
         Motor(int pinA, int pinB);

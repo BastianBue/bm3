@@ -1,6 +1,6 @@
 #pragma once
 
-namespace bm3 { namespace types {
+namespace bm3 { namespace state {
 
 enum class State {
     DEFAULT,

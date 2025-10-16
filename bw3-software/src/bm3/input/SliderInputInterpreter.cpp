@@ -1,6 +1,6 @@
-#include "SliderInputInterpreter.h"
+#include "input/SliderInputInterpreter.h"
 
-namespace bm3 { namespace core {
+namespace bm3 { namespace input {
 
 void SliderInputInterpreter::interpretInput(int slider1, int slider2) {
     // Map slider1 (-100 to 100) to base speed (0 to 100)

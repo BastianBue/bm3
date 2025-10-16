@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Motor.h"
 
-namespace bm3 { namespace hardware {
+namespace bm3 { namespace peripheral {
 
 Motor::Motor(int pinA, int pinB)
     : pinA(pinA), pinB(pinB) {

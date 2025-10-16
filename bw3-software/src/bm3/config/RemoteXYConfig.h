@@ -1,3 +1,7 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#pragma clang diagnostic ignored "-Wmissing-variable-declarations"
+
 #define REMOTEXY_MODE__ESP32CORE_BLE
 #define REMOTEXY_BLUETOOTH_NAME "RemoteXY"
 
@@ -19,3 +23,5 @@ struct {
     uint8_t connect_flag;  // =1 if wire connected, else =0
 } RemoteXY;
 #pragma pack(pop)
+
+#pragma clang diagnostic pop

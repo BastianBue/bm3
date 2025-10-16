@@ -1,5 +1,6 @@
-#include "Motor.h"
-#include "RemoteXYConfig.h"
+#include <Arduino.h>
+#include "peripheral/Motor.h"
+#include "config/RemoteXYConfig.h"
 
 bm3::hardware::Motor leftMotor(5, 6); // Example pins
 bm3::hardware::Motor rightMotor(7, 8); // Example pins
