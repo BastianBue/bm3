@@ -32,18 +32,18 @@ namespace bm3
             const bool straight = !left && !right;
 
             const int speed = std::abs(vertical_slider);
-            const int tilt = std::abs(horizontal_slider) / 2;
+            const int tilt = std::abs(horizontal_slider) * 0.75 * speed / 100; // max tilt is 75% of speed
 
             int speed_left = 0;
             int speed_right = 0;
             if (left)
             {
                 speed_left = speed;
-                speed_right = speed - tilt * speed / 100;
+                speed_right = speed - tilt;
             }
             else if (right)
             {
-                speed_left = speed - tilt * speed / 100;
+                speed_left = speed - tilt;
                 speed_right = speed;
             }
             else if (straight)

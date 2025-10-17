@@ -22,7 +22,7 @@ void Motor::forward(const int speed) const
         return;
     }
 
-    const int pwm = map(speed, 0, 100, 120, 255);
+    const int pwm = map(speed, 0, 100, 120, 255); // from 120 to 255, because below 120 the car does not move on the ground
     analogWrite(pinA, pwm); // speed PWM
     analogWrite(pinB, 0);   // direction LOW
 }
@@ -34,7 +34,7 @@ void Motor::backward(const int speed) const{
         return;
     }
 
-    const int pwm = map(speed, 0, 100, 120, 255);
+    const int pwm = map(speed, 0, 100, 120, 255); // from 120 to 255, because below 120 the car does not move on the ground
     analogWrite(pinA, 0);   // direction LOW
     analogWrite(pinB, pwm); // speed PWM
 }

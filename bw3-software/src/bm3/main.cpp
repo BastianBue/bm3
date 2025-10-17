@@ -4,6 +4,7 @@
 #include "esp_task_wdt.h"
 #include  "bm3/input/InputInterpreterFactory.h"
 #include  "bm3/state/State.h"
+#include "PWM.h"
 
 using bm3::peripheral::Motor;
 using bm3::input::InputInterpreterFactory;
@@ -17,6 +18,8 @@ void setup()
 {
     RemoteXY_Init();
     Serial.begin(9600);
+
+    PWM_init();
 
     leftMotor.setup();
     rightMotor.setup();
