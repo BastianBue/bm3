@@ -3,14 +3,14 @@
 
 namespace bm3 { namespace peripheral {
 
-Motor::Motor(PwmPin* pinA, PwmPin* pinB)
-    : pinA(pinA), pinB(pinB) {
+Motor::Motor(PwmPin* pinA, PwmPin* pinB, PwmSink* sink)
+    : pinA(pinA), pinB(pinB), sink(sink) {
 }
 
 void Motor::setup() {
     Serial.println("Motor::setup");
-    if (pinA) pinA->setup();
-    if (pinB) pinB->setup();
+    pinA->setup();
+    pinB->setup();
 }
 
 void Motor::forward(const int speed) const
@@ -21,8 +21,8 @@ void Motor::forward(const int speed) const
         return;
     }
     const int pwm = map(speed, 0, 100, 120, 255);
-    if (pinA) pinA->analogWrite(pwm);
-    if (pinB) pinB->analogWrite(0);
+    sink->set(pinA, pwm);
+    sink->set(pinB, 0);
 }
 
 void Motor::backward(const int speed) const{
@@ -32,14 +32,14 @@ void Motor::backward(const int speed) const{
         return;
     }
     const int pwm = map(speed, 0, 100, 120, 255);
-    if (pinA) pinA->analogWrite(0);
-    if (pinB) pinB->analogWrite(pwm);
+    sink->set(pinA, 0);
+    sink->set(pinB, pwm);
 }
 
 void Motor::stop() const
 {
-    if (pinA) pinA->analogWrite(0);
-    if (pinB) pinB->analogWrite(0);
+    sink->set(pinA, 0);
+    sink->set(pinB, 0);
 }
 
 }}
