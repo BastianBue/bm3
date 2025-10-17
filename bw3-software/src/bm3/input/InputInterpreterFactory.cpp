@@ -1,25 +1,37 @@
-#include "input/InputInterpreterFactory.h"
-#include "input/SliderInputInterpreter.h"
-#include "input/OverriddenInputInterpreter.h"
-#include "state/State.h"
+#include "bm3/input/InputInterpreterFactory.h"
+#include "bm3/input/SliderInputInterpreter.h"
+#include "bm3/input/OverriddenInputInterpreter.h"
+#include "bm3/state/State.h"
 
-namespace bm3 { namespace input {
+using bm3::peripheral::Motor;
+using bm3::peripheral::ReflectanceSensor;
+using bm3::peripheral::BallShooter;
+using bm3::state::State;
 
-bm3::core::InputInterpreter* InputInterpreterFactory::createInterpreter(
-    bm3::types::State state,
-    bm3::hardware::Motor* leftMotor,
-    bm3::hardware::Motor* rightMotor,
-    bm3::hardware::ReflectanceSensor* leftSensor,
-    bm3::hardware::ReflectanceSensor* rightSensor,
-    bm3::hardware::BallShooter* ballShooter)
+namespace bm3
 {
-    if (state == bm3::types::State::DEFAULT) {
-        return new bm3::core::SliderInputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor, ballShooter);
+    namespace input
+    {
+        InputInterpreter* InputInterpreterFactory::createInterpreter(
+            const State state,
+            Motor* leftMotor,
+            Motor* rightMotor
+            // ReflectanceSensor* leftSensor,
+            // ReflectanceSensor* rightSensor,
+            // BallShooter* ballShooter
+        )
+        {
+            if (state == State::DEFAULT_STATE)
+            {
+                // TODO remove nullprts
+                return new SliderInputInterpreter(leftMotor, rightMotor, nullptr, nullptr, nullptr);
+            }
+            if (state == State::LINE_CROSSED)
+            {
+                // TODO remove nullprts
+                return new OverriddenInputInterpreter(leftMotor, rightMotor, nullptr, nullptr);
+            }
+            return nullptr;
+        }
     }
-    if (state == bm3::types::State::LINE_CROSSED) {
-        return new bm3::core::OverriddenInputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor);
-    }
-    return nullptr;
 }
-
-}}

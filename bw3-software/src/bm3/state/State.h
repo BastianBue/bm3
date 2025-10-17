@@ -3,8 +3,9 @@
 namespace bm3 { namespace state {
 
 enum class State {
-    DEFAULT,
+    DEFAULT_STATE,
     LINE_CROSSED
 };
 
 }}
+

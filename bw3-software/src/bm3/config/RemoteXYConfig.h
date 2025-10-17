@@ -1,7 +1,12 @@
+#pragma once
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
+#pragma clang diagnostic ignored "-Wreserved-identifier"
+#pragma clang diagnostic ignored "-Wpragma-pack"
 
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-reserved-identifier, bugprone-reserved-identifier)
 #define REMOTEXY_MODE__ESP32CORE_BLE
 #define REMOTEXY_BLUETOOTH_NAME "RemoteXY"
 
@@ -17,8 +22,8 @@ uint8_t RemoteXY_CONF[] =   // 62 bytes
 
 struct {
     uint8_t switch_02; // =1 if switch ON and =0 if OFF, from 0 to 1
-    int8_t slider_01; // from -100 to 100
-    int8_t slider_02; // from -100 to 100
+    int8_t horizontal_slider; // from -100 to 100
+    int8_t vertical_slider; // from -100 to 100
     uint8_t button_01; // =1 if button pressed, else =0, from 0 to 1
     uint8_t connect_flag;  // =1 if wire connected, else =0
 } RemoteXY;

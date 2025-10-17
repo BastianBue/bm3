@@ -1,13 +1,16 @@
 #pragma once
-#include "AbstractPeripheral.h"
+
+#include "bm3/peripheral/AbstractPeripheral.h"
+
+using bm3::peripheral::AbstractPeripheral;
 
 namespace bm3 { namespace peripheral {
-    class Motor : public AbstractPeripheral {
+    class Motor final : public AbstractPeripheral {
     public:
         Motor(int pinA, int pinB);
-        void forward(int speed); // speed: 0-100
-        void backward(int speed); // speed: 0-100
-        void stop();
+        void forward(int speed) const; // speed: 0-100
+        void backward(int speed) const; // speed: 0-100
+        void stop() const;
         void setup() override;
     private:
         int pinA;

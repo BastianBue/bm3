@@ -1,28 +1,34 @@
 #pragma once
-#include "peripheral/Motor.h"
-#include "peripheral/ReflectanceSensor.h"
-#include "peripheral/BallShooter.h"
+
+#include "bm3/peripheral/Motor.h"
+#include "bm3/peripheral/ReflectanceSensor.h"
+#include "bm3/peripheral/BallShooter.h"
+
+using bm3::peripheral::Motor;
+using bm3::peripheral::ReflectanceSensor;
+using bm3::peripheral::BallShooter;
 
 namespace bm3 { namespace input {
 
 class InputInterpreter {
 public:
     virtual void interpretInput(int slider1, int slider2) = 0;
-    virtual ~InputInterpreter() {}
+    virtual ~InputInterpreter() = default;
 protected:
-    bm3::hardware::Motor* leftMotor;
-    bm3::hardware::Motor* rightMotor;
-    bm3::hardware::ReflectanceSensor* leftSensor;
-    bm3::hardware::ReflectanceSensor* rightSensor;
-    bm3::hardware::BallShooter* ballShooter;
-    InputInterpreter(bm3::hardware::Motor* leftMotor,
-                     bm3::hardware::Motor* rightMotor,
-                     bm3::hardware::ReflectanceSensor* leftSensor,
-                     bm3::hardware::ReflectanceSensor* rightSensor,
-                     bm3::hardware::BallShooter* ballShooter)
+    Motor* leftMotor;
+    Motor* rightMotor;
+    ReflectanceSensor* leftSensor;
+    ReflectanceSensor* rightSensor;
+    BallShooter* ballShooter;
+    InputInterpreter(Motor* leftMotor,
+                     Motor* rightMotor,
+                     ReflectanceSensor* leftSensor,
+                     ReflectanceSensor* rightSensor,
+                     BallShooter* ballShooter)
         : leftMotor(leftMotor), rightMotor(rightMotor),
           leftSensor(leftSensor), rightSensor(rightSensor),
           ballShooter(ballShooter) {}
 };
 
 }}
+

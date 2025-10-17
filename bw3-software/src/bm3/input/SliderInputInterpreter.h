@@ -1,18 +1,31 @@
 #pragma once
-#include "input/InputInterpreter.h"
 
-namespace bm3 { namespace input {
+#include "bm3/input/InputInterpreter.h"
+#include "bm3/peripheral/Motor.h"
+#include "bm3/peripheral/ReflectanceSensor.h"
+#include "bm3/peripheral/BallShooter.h"
 
-class SliderInputInterpreter : public InputInterpreter {
-public:
-    SliderInputInterpreter(bm3::hardware::Motor* leftMotor,
-                           bm3::hardware::Motor* rightMotor,
-                           bm3::hardware::ReflectanceSensor* leftSensor,
-                           bm3::hardware::ReflectanceSensor* rightSensor,
-                           bm3::hardware::BallShooter* ballShooter)
-        : InputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor, ballShooter) {}
+using bm3::peripheral::Motor;
+using bm3::peripheral::ReflectanceSensor;
+using bm3::peripheral::BallShooter;
 
-    void interpretInput(int slider1, int slider2) override;
-};
+namespace bm3
+{
+    namespace input
+    {
+        class SliderInputInterpreter final : public InputInterpreter
+        {
+        public:
+            SliderInputInterpreter(Motor* leftMotor,
+                                   Motor* rightMotor,
+                                   ReflectanceSensor* leftSensor,
+                                   ReflectanceSensor* rightSensor,
+                                   BallShooter* ballShooter)
+                : InputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor, ballShooter)
+            {
+            }
 
-}}
+            void interpretInput(int vertical_slider, int horizontal_slider) override;
+        };
+    }
+}

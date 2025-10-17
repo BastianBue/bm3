@@ -1,21 +1,90 @@
-#include "input/SliderInputInterpreter.h"
+#include "bm3/input/SliderInputInterpreter.h"
 
-namespace bm3 { namespace input {
+#include <HardwareSerial.h>
 
-void SliderInputInterpreter::interpretInput(int slider1, int slider2) {
-    // Map slider1 (-100 to 100) to base speed (0 to 100)
-    int baseSpeed = (slider1 + 100) / 2;
-    // slider2 (-100 to 100) as tilt, mapped to -50 to 50
-    int tilt = slider2 / 2;
-    int leftSpeed = baseSpeed + tilt;
-    int rightSpeed = baseSpeed - tilt;
-    // Clamp speeds to 0..100
-    if (leftSpeed < 0) leftSpeed = 0;
-    if (leftSpeed > 100) leftSpeed = 100;
-    if (rightSpeed < 0) rightSpeed = 0;
-    if (rightSpeed > 100) rightSpeed = 100;
-    if (leftMotor) leftMotor->forward(leftSpeed);
-    if (rightMotor) rightMotor->forward(rightSpeed);
+using bm3::peripheral::Motor;
+using bm3::peripheral::ReflectanceSensor;
+using bm3::peripheral::BallShooter;
+
+namespace bm3
+{
+    namespace input
+    {
+        void SliderInputInterpreter::interpretInput(const int vertical_slider, const int horizontal_slider)
+        {
+            if (100 < vertical_slider || vertical_slider < -100)
+            {
+                Serial.println("Vertical Slider out of Bounds: " + String(vertical_slider));
+                return;
+            }
+            if (100 < horizontal_slider || horizontal_slider < -100)
+            {
+                Serial.println("Horizontal Slider out of Bounds: " + String(horizontal_slider));
+                return;
+            }
+
+            const bool backwards = vertical_slider < 0;
+            const bool forwards = vertical_slider > 0;
+            const bool standstill = !forwards && !backwards;
+
+            const bool left = horizontal_slider < 0;
+            const bool right = horizontal_slider > 0;
+            const bool straight = !left && !right;
+
+            const int speed = std::abs(vertical_slider);
+            const int tilt = std::abs(horizontal_slider) / 2;
+
+            int speed_left = 0;
+            int speed_right = 0;
+            if (left)
+            {
+                speed_left = speed;
+                speed_right = speed - tilt * speed / 100;
+            }
+            else if (right)
+            {
+                speed_left = speed - tilt * speed / 100;
+                speed_right = speed;
+            }
+            else if (straight)
+            {
+                speed_left = speed;
+                speed_right = speed;
+            }
+
+            if (forwards)
+            {
+                Serial.println(
+                    "Left Motor forward: " + String(speed_left) + ", " + "Right Motor forward: " + String(speed_right));
+                leftMotor->forward(speed_left);
+                rightMotor->forward(speed_right);
+            }
+            else if (backwards)
+            {
+                Serial.println(
+                    "Left Motor backward: " + String(speed_left) + ", " + "Right Motor backward: " +
+                    String(speed_right));
+                leftMotor->backward(speed_left);
+                rightMotor->backward(speed_right);
+            }
+            else if (standstill && right)
+            {
+                Serial.println("Left Motor backward: " + String(tilt) + ", " + "Right Motor forward: " + String(tilt));
+                leftMotor->backward(tilt);
+                rightMotor->forward(tilt);
+            }
+            else if (standstill && left)
+            {
+                Serial.println("Left Motor forward: " + String(tilt) + ", " + "Right Motor backward: " + String(tilt));
+                leftMotor->forward(tilt);
+                rightMotor->backward(tilt);
+            }
+            else if (standstill && straight)
+            {
+                Serial.println("Both Motors stop");
+                leftMotor->stop();
+                rightMotor->stop();
+            }
+        }
+    }
 }
-
-}}

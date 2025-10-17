@@ -1,24 +1,31 @@
 #include <Arduino.h>
-#include "peripheral/Motor.h"
-#include "config/RemoteXYConfig.h"
+#include "bm3/peripheral/Motor.h"
+#include "bm3/config/RemoteXYConfig.h"
+#include "esp_task_wdt.h"
+#include  "bm3/input/InputInterpreterFactory.h"
+#include  "bm3/state/State.h"
 
-bm3::hardware::Motor leftMotor(5, 6); // Example pins
-bm3::hardware::Motor rightMotor(7, 8); // Example pins
+using bm3::peripheral::Motor;
+using bm3::input::InputInterpreterFactory;
+using bm3::input::InputInterpreter;
+using bm3::state::State;
+
+Motor leftMotor(0, 1); // Example pins
+Motor rightMotor(2, 3); // Example pins
 
 void setup()
 {
-  RemoteXY_Init ();
-  Serial.begin(9600);
+    RemoteXY_Init();
+    Serial.begin(9600);
 
-  leftMotor.setup();
-  rightMotor.setup();
+    leftMotor.setup();
+    rightMotor.setup();
 }
 
 void loop()
 {
-  RemoteXY_Handler ();
-  Serial.println(RemoteXY.slider_01);
-  Serial.println(RemoteXY.slider_02);
-  Serial.println(RemoteXY.switch_02);
-  Serial.println(RemoteXY.button_01);
+    RemoteXY_Handler();
+    InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(State::DEFAULT_STATE, &leftMotor, &rightMotor);
+    inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+    esp_task_wdt_reset(); // Pet the Dog
 }

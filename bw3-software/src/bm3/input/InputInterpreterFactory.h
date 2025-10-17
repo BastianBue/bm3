@@ -1,22 +1,28 @@
 #pragma once
-#include "input/InputInterpreter.h"
-#include "input/SliderInputInterpreter.h"
-#include "peripheral/Motor.h"
-#include "peripheral/ReflectanceSensor.h"
-#include "peripheral/BallShooter.h"
-#include "state/State.h"
+
+#include "bm3/input/InputInterpreter.h"
+#include "bm3/peripheral/Motor.h"
+#include "bm3/peripheral/ReflectanceSensor.h"
+#include "bm3/peripheral/BallShooter.h"
+#include "bm3/state/State.h"
+
+using bm3::peripheral::Motor;
+using bm3::peripheral::ReflectanceSensor;
+using bm3::peripheral::BallShooter;
+using bm3::state::State;
 
 namespace bm3 { namespace input {
 
 class InputInterpreterFactory {
 public:
-    static bm3::core::InputInterpreter* createInterpreter(
-        bm3::types::State state,
-        bm3::hardware::Motor* leftMotor,
-        bm3::hardware::Motor* rightMotor,
-        bm3::hardware::ReflectanceSensor* leftSensor,
-        bm3::hardware::ReflectanceSensor* rightSensor,
-        bm3::hardware::BallShooter* ballShooter);
+    static InputInterpreter* createInterpreter(
+        State state,
+        Motor* leftMotor,
+        Motor* rightMotor
+        // ReflectanceSensor* leftSensor,
+        // ReflectanceSensor* rightSensor,
+        // BallShooter* ballShooter
+        );
 };
 
 }}
