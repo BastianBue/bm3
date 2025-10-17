@@ -16,12 +16,13 @@ namespace bm3
         class SliderInputInterpreter final : public InputInterpreter
         {
         public:
-            SliderInputInterpreter(Motor* leftMotor,
-                                   Motor* rightMotor,
-                                   ReflectanceSensor* leftSensor,
-                                   ReflectanceSensor* rightSensor,
-                                   BallShooter* ballShooter)
-                : InputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor, ballShooter)
+            SliderInputInterpreter(
+                Motor* leftMotor,
+                Motor* rightMotor,
+                ReflectanceSensor* leftSensor,
+                ReflectanceSensor* rightSensor,
+                BallShooter* ballShooter
+            ) : InputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor, ballShooter)
             {
             }
 

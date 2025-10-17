@@ -38,9 +38,14 @@ void setup()
 void loop()
 {
     RemoteXY_Handler();
-    InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
-        State::DEFAULT_STATE, &leftMotor, &rightMotor);
-    inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
-    pwmSink.flush(); // Synchronize all PWM updates
+
+    if (RemoteXY.is_connected && RemoteXY.is_on)
+    {
+        InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
+            State::DEFAULT_STATE, &leftMotor, &rightMotor);
+        inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+        pwmSink.flush(); // Synchronize all PWM updates
+    }
+
     esp_task_wdt_reset(); // Pet the Dog
 }
