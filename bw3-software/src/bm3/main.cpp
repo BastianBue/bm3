@@ -4,15 +4,21 @@
 #include "esp_task_wdt.h"
 #include  "bm3/input/InputInterpreterFactory.h"
 #include  "bm3/state/State.h"
-#include "PWM.h"
+#include "config/PWMInit.h"
+#include "bm3/config/PwmPin.h"
 
 using bm3::peripheral::Motor;
 using bm3::input::InputInterpreterFactory;
 using bm3::input::InputInterpreter;
 using bm3::state::State;
 
-Motor leftMotor(0, 1); // Example pins
-Motor rightMotor(2, 3); // Example pins
+PwmPin leftPwmA(0);
+PwmPin leftPwmB(1);
+PwmPin rightPwmA(2);
+PwmPin rightPwmB(3);
+
+Motor leftMotor(&leftPwmA, &leftPwmB);
+Motor rightMotor(&rightPwmA, &rightPwmB);
 
 void setup()
 {
@@ -20,6 +26,11 @@ void setup()
     Serial.begin(9600);
 
     PWM_init();
+
+    leftPwmA.setup();
+    leftPwmB.setup();
+    rightPwmA.setup();
+    rightPwmB.setup();
 
     leftMotor.setup();
     rightMotor.setup();

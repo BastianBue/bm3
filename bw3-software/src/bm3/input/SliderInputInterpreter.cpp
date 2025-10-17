@@ -32,7 +32,9 @@ namespace bm3
             const bool straight = !left && !right;
 
             const int speed = std::abs(vertical_slider);
-            const int tilt = std::abs(horizontal_slider) * 0.75 * speed / 100; // max tilt is 75% of speed
+            const int tilt = std::abs(horizontal_slider) * 0.9 * speed / 100.0; // max tilt is 75% of speed
+
+            const int rotation = std::abs(horizontal_slider);
 
             int speed_left = 0;
             int speed_right = 0;
@@ -70,14 +72,14 @@ namespace bm3
             else if (standstill && right)
             {
                 Serial.println("Left Motor backward: " + String(tilt) + ", " + "Right Motor forward: " + String(tilt));
-                leftMotor->backward(tilt);
-                rightMotor->forward(tilt);
+                leftMotor->backward(rotation);
+                rightMotor->forward(rotation);
             }
             else if (standstill && left)
             {
                 Serial.println("Left Motor forward: " + String(tilt) + ", " + "Right Motor backward: " + String(tilt));
-                leftMotor->forward(tilt);
-                rightMotor->backward(tilt);
+                leftMotor->forward(rotation);
+                rightMotor->backward(rotation);
             }
             else if (standstill && straight)
             {
