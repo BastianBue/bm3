@@ -15,10 +15,10 @@ using bm3::state::State;
 
 PwmSink pwmSink;
 
-PwmPin leftPwmA(0);
-PwmPin leftPwmB(1);
-PwmPin rightPwmA(2);
-PwmPin rightPwmB(3);
+PwmPin rightPwmA(1);
+PwmPin rightPwmB(0);
+PwmPin leftPwmA(3);
+PwmPin leftPwmB(2);
 
 Motor leftMotor(&leftPwmA, &leftPwmB, &pwmSink);
 Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink);
