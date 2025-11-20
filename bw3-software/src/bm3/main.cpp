@@ -15,13 +15,16 @@ using bm3::state::State;
 
 PwmSink pwmSink;
 
-PwmPin rightPwmA(1);
-PwmPin rightPwmB(0);
+PwmPin rightPwmA(5);
+PwmPin rightPwmB(4);
 PwmPin leftPwmA(3);
 PwmPin leftPwmB(2);
 
 Motor leftMotor(&leftPwmA, &leftPwmB, &pwmSink);
 Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink);
+
+ReflectanceSensor leftSensor(1);
+ReflectanceSensor rightSensor(0);
 
 void setup()
 {
@@ -38,6 +41,10 @@ void setup()
 void loop()
 {
     RemoteXY_Handler();
+
+    RemoteXY_delay(20);
+    leftSensor.update();
+    rightSensor.update();
 
     if (RemoteXY.is_connected && RemoteXY.is_on)
     {
