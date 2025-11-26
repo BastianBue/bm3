@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include <ios>
+
 #include "bm3/peripheral/Motor.h"
 #include "bm3/config/RemoteXYConfig.h"
 #include "esp_task_wdt.h"
@@ -7,11 +9,13 @@
 #include "config/PWMInit.h"
 #include "bm3/config/PwmPin.h"
 #include "bm3/config/PwmSink.h"
+#include "state/StateMachine.h"
 
 using bm3::peripheral::Motor;
 using bm3::input::InputInterpreterFactory;
 using bm3::input::InputInterpreter;
 using bm3::state::State;
+using bm3::state::StateMachine;
 
 PwmSink pwmSink;
 
@@ -26,6 +30,8 @@ Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink);
 ReflectanceSensor leftSensor(1);
 ReflectanceSensor rightSensor(0);
 
+StateMachine stateMachine(State::DEFAULT_STATE, leftSensor, rightSensor);
+
 void setup()
 {
     RemoteXY_Init();
@@ -36,23 +42,24 @@ void setup()
     // pwm pins are setup by the motor class
     leftMotor.setup();
     rightMotor.setup();
+
+    leftSensor.setup();
+    rightSensor.setup();
 }
 
 void loop()
 {
+    RemoteXY_delay(1000);
     RemoteXY_Handler();
 
-    RemoteXY_delay(20);
-    leftSensor.update();
-    rightSensor.update();
-
-    if (RemoteXY.is_connected && RemoteXY.is_on)
-    {
-        InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
-            State::DEFAULT_STATE, &leftMotor, &rightMotor);
-        inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
-        pwmSink.flush(); // Synchronize all PWM updates
-    }
+    // if (RemoteXY.is_connected && RemoteXY.is_on)
+    // {
+    stateMachine.update();
+    InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
+        stateMachine.getState(), &leftMotor, &rightMotor);
+    inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+    pwmSink.flush(); // Synchronize all PWM updates
+    // }
 
     esp_task_wdt_reset(); // Pet the Dog
 }

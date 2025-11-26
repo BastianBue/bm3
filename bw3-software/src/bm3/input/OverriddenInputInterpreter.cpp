@@ -3,6 +3,19 @@
 using bm3::peripheral::Motor;
 using bm3::peripheral::ReflectanceSensor;
 
-namespace bm3 { namespace input {
-// ...OverriddenInputInterpreter implementation...
-}}
+namespace bm3
+{
+    namespace input
+    {
+        // ...OverriddenInputInterpreter implementation...
+        void OverriddenInputInterpreter::interpretInput(int slider1, int slider2)
+        {
+            Serial.println("OverriddenInputInterpreter::interpretInput");
+            // Example: stop both motors when overridden
+            // if (leftMotor) leftMotor->backward(50);
+            // if (rightMotor) rightMotor->backward(50);
+            if (leftMotor) leftMotor->stop();
+            if (rightMotor) rightMotor->stop();
+        }
+    }
+}

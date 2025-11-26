@@ -12,6 +12,7 @@ namespace bm3
     {
         void SliderInputInterpreter::interpretInput(const int vertical_slider, const int horizontal_slider)
         {
+            Serial.println("SliderInputInterpreter::interpretInput");
             if (100 < vertical_slider || vertical_slider < -100)
             {
                 Serial.println("Vertical Slider out of Bounds: " + String(vertical_slider));

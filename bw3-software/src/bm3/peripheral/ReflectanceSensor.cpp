@@ -16,17 +16,17 @@ namespace bm3
         void ReflectanceSensor::update()
         {
             reflectanceValue = analogRead(readPinNumber);
-            Serial.println("ReflectanceSensor::update" + String(reflectanceValue));
+            Serial.println("ReflectanceSensor::update " + String(reflectanceValue) + " isDark = " + this->isDark() + " isLight = " + this->isLight());
         }
 
         bool ReflectanceSensor::isDark() const
         {
-            return reflectanceValue > 0;
+            return reflectanceValue < 800;
         }
 
         bool ReflectanceSensor::isLight() const
         {
-            return reflectanceValue <= 0;
+            return reflectanceValue >= 800;
         }
 
         void ReflectanceSensor::setup()

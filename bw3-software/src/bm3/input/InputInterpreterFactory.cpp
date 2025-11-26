@@ -23,13 +23,11 @@ namespace bm3
         {
             if (state == State::DEFAULT_STATE)
             {
-                // TODO remove nullprts
                 return new SliderInputInterpreter(leftMotor, rightMotor, nullptr, nullptr, nullptr);
             }
             if (state == State::LINE_CROSSED)
             {
-                // TODO remove nullprts
-                return new OverriddenInputInterpreter(leftMotor, rightMotor, nullptr, nullptr);
+                return new OverriddenInputInterpreter(leftMotor, rightMotor, nullptr, nullptr, nullptr);
             }
             return nullptr;
         }
