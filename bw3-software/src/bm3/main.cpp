@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <ios>
 
 #include "bm3/peripheral/Motor.h"
 #include "bm3/config/RemoteXYConfig.h"
@@ -10,12 +9,15 @@
 #include "bm3/config/PwmPin.h"
 #include "bm3/config/PwmSink.h"
 #include "state/StateMachine.h"
+#include "../../include/resources/ApplicationProperties.h"
 
 using bm3::peripheral::Motor;
 using bm3::input::InputInterpreterFactory;
 using bm3::input::InputInterpreter;
 using bm3::state::State;
 using bm3::state::StateMachine;
+
+ApplicationProperties config = loadProfileConfig();
 
 PwmSink pwmSink;
 
@@ -34,8 +36,12 @@ StateMachine stateMachine(State::DEFAULT_STATE, leftSensor, rightSensor);
 
 void setup()
 {
-    RemoteXY_Init();
     Serial.begin(9600);
+
+    Serial.print("Loaded profile config: someVar=");
+    Serial.print(config.someVar);
+    Serial.print(", anotherVar=");
+    Serial.println(config.anotherVar);
 
     PWM_init();
 
