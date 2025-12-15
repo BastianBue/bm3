@@ -1,0 +1,11 @@
+stateDiagram-v2
+    [*] --> DEFAULT_STATE
+    DEFAULT_STATE --> LINE_CROSSED: Linie erkannt
+    LINE_CROSSED --> DEFAULT_STATE: 2000ms vergangen
+
+    state DEFAULT_STATE {
+        state "Output: Controls work normally" as output_default
+    }
+    state LINE_CROSSED {
+        state "Output: Motors Backwards at half speed" as output_linecrossed
+    }

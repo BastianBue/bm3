@@ -1,92 +1,97 @@
 classDiagram
-    class Peripheral {
+    class AbstractPeripheral {
         <<abstract>>
         +setup()
     }
     class Motor {
-        +pinA
-        +pinB
-        +enablePin
-        +forward()
-        +backward()
+        +forward(int)
+        +backward(int)
         +stop()
-        +Motor(pinA, pinB, enablePin)
         +setup()
+        -PwmPin* pinA
+        -PwmPin* pinB
+        -PwmSink* sink
+        -const char* descriptor
     }
     class ReflectanceSensor {
-        +pin
-        +readValue()
-        +ReflectanceSensor(pin)
         +setup()
+        +isDark() const
+        +isLight() const
+        +update()
+        -double reflectanceValue
+        -int readPinNumber
     }
     class BallShooter {
         <<abstract>>
-        +pins
-        +shoot()
-        +BallShooter(pins)
-        +setup()
+        +~BallShooter()
     }
     class ServoBallShooter {
-        +pins
-        +shoot()
-        +ServoBallShooter(pins)
+        // empty
+    }
+    class PwmPin {
         +setup()
+        +analogWrite(uint8_t)
+        -int pin_
+        -ESP32PWM pwm_
     }
-    Peripheral <|-- Motor
-    Peripheral <|-- ReflectanceSensor
-    Peripheral <|-- BallShooter
+    class PwmSink {
+        +set(PwmPin*, int)
+        +flush()
+        -vector<Entry> entries_
+    }
+    AbstractPeripheral <|-- Motor
+    AbstractPeripheral <|-- ReflectanceSensor
+    AbstractPeripheral <|-- BallShooter
     BallShooter <|-- ServoBallShooter
-    Peripheral <|-- ServoBallShooter
-
-    class State {
-        <<enum>>
-        DEFAULT
-        LINE_CROSSED
-    }
-
+    Motor o-- PwmPin
+    Motor o-- PwmSink
+    %% Korrektur: ServoBallShooter erbt nur von BallShooter, BallShooter erbt von AbstractPeripheral
+    %% InputInterpreter hierarchy
     class InputInterpreter {
         <<abstract>>
-        +leftMotor: Motor
-        +rightMotor: Motor
-        +leftSensor: ReflectanceSensor
-        +rightSensor: ReflectanceSensor
-        +ballShooter: BallShooter
-        +interpretInput()
-        +InputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter)
+        +interpretInput(int, int)
+        -Motor* leftMotor
+        -Motor* rightMotor
+        -ReflectanceSensor* leftSensor
+        -ReflectanceSensor* rightSensor
+        -BallShooter* ballShooter
     }
     class SliderInputInterpreter {
-        +slider1Value
-        +slider2Value
-        +pinList
-        +interpretInput()
-        +SliderInputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter, ...)
-    }
-    class JoystickInputInterpreter {
-        +joystickX
-        +joystickY
-        +interpretInput()
-        +JoystickInputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter, ...)
+        +interpretInput(int, int)
     }
     class OverriddenInputInterpreter {
-        +leftMotor: Motor
-        +rightMotor: Motor
-        +leftSensor: ReflectanceSensor
-        +rightSensor: ReflectanceSensor
-        +ballShooter: BallShooter
-        +interpretInput()
-        +OverriddenInputInterpreter(leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter)
+        +interpretInput(int, int)
+    }
+    class JoystickInputInterpreter {
+        // empty
     }
     InputInterpreter <|-- SliderInputInterpreter
-    InputInterpreter <|-- JoystickInputInterpreter
     InputInterpreter <|-- OverriddenInputInterpreter
-
-    class StateMachine {
-        +currentState: State
-        +setState()
-        +getState()
-    }
+    InputInterpreter <|-- JoystickInputInterpreter
+    InputInterpreter o-- Motor : leftMotor
+    InputInterpreter o-- Motor : rightMotor
+    InputInterpreter o-- ReflectanceSensor : leftSensor
+    InputInterpreter o-- ReflectanceSensor : rightSensor
+    InputInterpreter o-- BallShooter : ballShooter
+    %% Factory
     class InputInterpreterFactory {
-        +createInterpreter(state, leftMotor: Motor, rightMotor: Motor, leftSensor: ReflectanceSensor, rightSensor: ReflectanceSensor, ballShooter: BallShooter): InputInterpreter
+        +createInterpreter(State, Motor*, Motor*)
     }
-    StateMachine --> InputInterpreterFactory : uses
-    InputInterpreterFactory --> InputInterpreter : creates & injects all components
+    InputInterpreterFactory ..> InputInterpreter : creates
+    %% StateMachine
+    class StateMachine {
+        -State state
+        -unsigned long lineCrossedAt
+        -ReflectanceSensor leftReflectanceSensor
+        -ReflectanceSensor rightReflectanceSensor
+        +update()
+        +getState() const
+    }
+    class State {
+        <<enum>>
+        DEFAULT_STATE
+        LINE_CROSSED
+    }
+    StateMachine o-- ReflectanceSensor : leftReflectanceSensor
+    StateMachine o-- ReflectanceSensor : rightReflectanceSensor
+    StateMachine o-- State

@@ -1,4 +1,4 @@
-# PlatformIO & CLion Schnellstart-Anleitung
+# BM3 Supercar - Dokumentation (BM3 = Bastian, Marius, Markus, Max)
 
 Diese Anleitung erklärt, wie du dieses Repository mit PlatformIO und dem CLion-Plugin auf einen unterstützten Mikrocontroller in einem gewünschten Profil installierst, baust und hochlädst.
 
@@ -51,6 +51,11 @@ Diese Anleitung erklärt, wie du dieses Repository mit PlatformIO und dem CLion-
      ```sh
      pio device monitor -e development
      ```
+
+## Diagramme
+
+- [Klassendiagramm (structure.mermaid)](docs/structure.mermaid)
+- [State Machine Diagramm (state_machine.mmd)](docs/state_machine.mmd)
 
 ## Hinweise
 - Um das aktive Profil zu wechseln, einfach ein anderes Environment in der PlatformIO-Toolbar wählen, die entsprechende Run Configuration nutzen oder den `-e`-Parameter bei `pio`-Befehlen verwenden.
