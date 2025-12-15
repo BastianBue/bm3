@@ -1,18 +1,20 @@
 #include <Arduino.h>
 #include "bm3/peripheral/Motor.h"
 
+#include "../../../include/utility/Log.h"
+
 namespace bm3
 {
     namespace peripheral
     {
-        Motor::Motor(PwmPin* pinA, PwmPin* pinB, PwmSink* sink)
-            : pinA(pinA), pinB(pinB), sink(sink)
+        Motor::Motor(PwmPin* pinA, PwmPin* pinB, PwmSink* sink, const char* descriptor)
+            : pinA(pinA), pinB(pinB), sink(sink), descriptor(descriptor)
         {
         }
 
         void Motor::setup()
         {
-            Serial.println("Motor::setup");
+            LOG(String(descriptor) + ": setup");
             pinA->setup();
             pinB->setup();
         }
@@ -21,9 +23,11 @@ namespace bm3
         {
             if (speed < 0 || speed > 100)
             {
-                Serial.println("Motor::forward: invalid speed: " + String(speed));
+                LOG(String(descriptor) + ": forward: invalid speed: " + String(speed));
                 return;
             }
+
+            LOG(String(descriptor) + " forward: " + String(speed));
             const int pwm = map(speed, 0, 100, 120, 255);
             sink->set(pinA, pwm);
             sink->set(pinB, 0);
@@ -33,9 +37,11 @@ namespace bm3
         {
             if (speed < 0 || speed > 100)
             {
-                Serial.println("Motor::backward: invalid speed: " + String(speed));
+                LOG(String(descriptor) + ": backward: invalid speed: " + String(speed));
                 return;
             }
+
+            LOG(String(descriptor) + " backward: " + String(speed));
             const int pwm = map(speed, 0, 100, 120, 255);
             sink->set(pinA, 0);
             sink->set(pinB, pwm);

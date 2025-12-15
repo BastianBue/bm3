@@ -9,7 +9,7 @@ using bm3::peripheral::AbstractPeripheral;
 namespace bm3 { namespace peripheral {
     class Motor final : public AbstractPeripheral {
     public:
-        Motor(PwmPin* pinA, PwmPin* pinB, PwmSink* sink);
+        Motor(PwmPin* pinA, PwmPin* pinB, PwmSink* sink, const char* descriptor);
         void forward(int speed) const; // speed: 0-100
         void backward(int speed) const; // speed: 0-100
         void stop() const;
@@ -18,5 +18,6 @@ namespace bm3 { namespace peripheral {
         PwmPin* pinA;
         PwmPin* pinB;
         PwmSink* sink;
+        const char* descriptor;
     };
 }}

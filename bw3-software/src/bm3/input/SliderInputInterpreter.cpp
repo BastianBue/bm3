@@ -2,6 +2,8 @@
 
 #include <HardwareSerial.h>
 
+#include "../../../include/utility/Log.h"
+
 using bm3::peripheral::Motor;
 using bm3::peripheral::ReflectanceSensor;
 using bm3::peripheral::BallShooter;
@@ -12,15 +14,15 @@ namespace bm3
     {
         void SliderInputInterpreter::interpretInput(const int vertical_slider, const int horizontal_slider)
         {
-            Serial.println("SliderInputInterpreter::interpretInput");
+            LOG("SliderInputInterpreter::interpretInput");
             if (100 < vertical_slider || vertical_slider < -100)
             {
-                Serial.println("Vertical Slider out of Bounds: " + String(vertical_slider));
+                LOG("Vertical Slider out of Bounds: " + String(vertical_slider));
                 return;
             }
             if (100 < horizontal_slider || horizontal_slider < -100)
             {
-                Serial.println("Horizontal Slider out of Bounds: " + String(horizontal_slider));
+                LOG("Horizontal Slider out of Bounds: " + String(horizontal_slider));
                 return;
             }
 
@@ -57,34 +59,26 @@ namespace bm3
 
             if (forwards)
             {
-                Serial.println(
-                    "Left Motor forward: " + String(speed_left) + ", " + "Right Motor forward: " + String(speed_right));
                 leftMotor->forward(speed_left);
                 rightMotor->forward(speed_right);
             }
             else if (backwards)
             {
-                Serial.println(
-                    "Left Motor backward: " + String(speed_left) + ", " + "Right Motor backward: " +
-                    String(speed_right));
                 leftMotor->backward(speed_left);
                 rightMotor->backward(speed_right);
             }
             else if (standstill && right)
             {
-                Serial.println("Left Motor backward: " + String(tilt) + ", " + "Right Motor forward: " + String(tilt));
                 leftMotor->backward(rotation);
                 rightMotor->forward(rotation);
             }
             else if (standstill && left)
             {
-                Serial.println("Left Motor forward: " + String(tilt) + ", " + "Right Motor backward: " + String(tilt));
                 leftMotor->backward(rotation);
                 rightMotor->forward(rotation);
             }
             else if (standstill && straight)
             {
-                Serial.println("Both Motors stop");
                 leftMotor->stop();
                 rightMotor->stop();
             }

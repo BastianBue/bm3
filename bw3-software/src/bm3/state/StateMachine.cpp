@@ -1,6 +1,8 @@
 #include "bm3/state/StateMachine.h"
 
 #include <utility>
+
+#include "../../../include/utility/Log.h"
 #include "bm3/state/State.h"
 
 using bm3::state::State;
@@ -28,7 +30,7 @@ namespace bm3
                 unsigned long elapsed = millis() - lineCrossedAt;
                 if (elapsed >= 2000)
                 {
-                    Serial.println("2000ms elapsed, entering Default State");
+                    LOG("2000ms elapsed, entering Default State");
                     this->state = State::DEFAULT_STATE;
                 }
             }
@@ -39,7 +41,7 @@ namespace bm3
                 {
                     this->state = State::LINE_CROSSED;
                     this->lineCrossedAt = millis();
-                    Serial.println("Line crossed, entering line crossed state");
+                    LOG("Line crossed, entering line crossed state");
                 }
             }
         }

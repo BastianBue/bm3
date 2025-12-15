@@ -20,7 +20,7 @@ void loop()
  if (Serial.available() > 0)
  {
  val = Serial.parseInt(); // Zahlenwert als Int einlesen
- Serial.println(val);
+ LOG(val);
  val = map(val,0,4096, 0, 180); // Abbilden des Wertes „val“ aus dem Bereich 0 – 4096 auf 0 - 180
  myservo.write(val); // “val” an den servo ausgeben.
  delay(500);

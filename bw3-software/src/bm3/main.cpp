@@ -10,6 +10,7 @@
 #include "bm3/config/PwmSink.h"
 #include "state/StateMachine.h"
 #include "../../include/resources/ApplicationProperties.h"
+#include "../../include/utility/Log.h"
 
 using bm3::peripheral::Motor;
 using bm3::input::InputInterpreterFactory;
@@ -26,8 +27,8 @@ PwmPin rightPwmB(4);
 PwmPin leftPwmA(3);
 PwmPin leftPwmB(2);
 
-Motor leftMotor(&leftPwmA, &leftPwmB, &pwmSink);
-Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink);
+Motor leftMotor(&leftPwmA, &leftPwmB, &pwmSink, "left motor");
+Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink, "right motor");
 
 ReflectanceSensor leftSensor(1);
 ReflectanceSensor rightSensor(0);
@@ -38,12 +39,13 @@ void setup()
 {
 #ifdef PROFILE_DEVELOPMENT
     Serial.begin(9600);
-
-    Serial.print("Loaded profile config: someVar=");
-    Serial.print(config.someVar);
-    Serial.print(", anotherVar=");
-    Serial.println(config.anotherVar);
 #endif
+    LOG("Loaded profile config: someVar=");
+    LOG(config.someVar);
+    LOG(", anotherVar=");
+    LOG("Loaded profile config: someVar=");
+    LOG(config.anotherVar);
+
     PWM_init();
 
     // pwm pins are setup by the motor class
