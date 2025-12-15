@@ -36,13 +36,14 @@ StateMachine stateMachine(State::DEFAULT_STATE, leftSensor, rightSensor);
 
 void setup()
 {
+#ifdef PROFILE_DEVELOPMENT
     Serial.begin(9600);
 
     Serial.print("Loaded profile config: someVar=");
     Serial.print(config.someVar);
     Serial.print(", anotherVar=");
     Serial.println(config.anotherVar);
-
+#endif
     PWM_init();
 
     // pwm pins are setup by the motor class
@@ -55,22 +56,29 @@ void setup()
 
 void loop()
 {
-    RemoteXY_delay(1000);
     RemoteXY_Handler();
 
+#ifdef PROFILE_DEVELOPMENT
+    RemoteXY_delay(1000);
+#endif
+
+
+#ifdef PROFILE_PRODUCTION
     if (RemoteXY.is_connected && RemoteXY.is_on)
     {
+#endif
         stateMachine.update();
         InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
             stateMachine.getState(), &leftMotor, &rightMotor);
         inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+#ifdef PROFILE_PRODUCTION
     }
     else
     {
         leftMotor.stop();
         rightMotor.stop();
     }
-
+#endif
     pwmSink.flush(); // Synchronize all PWM updates
 
     esp_task_wdt_reset(); // Pet the Dog
