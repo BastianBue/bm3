@@ -1,0 +1,20 @@
+Material Liste:
+
+Vorhandendes Material:
+
+2 x Räder
+1 x Plattform
+2 x Antriebsmotoren für die Räder
+1 x Batteriefach für 4 Batterien
+1 x Powerbank
+1 x Micro Servo SG 90 180 Grad    
+1 x L9110 Dual DC Treiber für 2 Schrittmotoren
+2 X QRT - 1A Reglectance Sensoren
+
+Das wird zusätzlich benötigt:
+
+1 x LN208 Modul benötigt für die Ansteuerung der beiden Motoren (geht eventuell auch mit dem gleichen L9110 Modul nochmal)
+2 x Räder (Für den Schießmechanismus falls nicht vorhanden) 
+2 x Zusätzliche DC Motoren (Wenn vorhandene nicht funktionieren)
+Eventuell einen anderen Servo/ Schrittmotor besorgen (Nachfragen, ob der aktuelle Servo sich endlos drehen kann oder begrenzt ist)
+
