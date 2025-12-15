@@ -6,13 +6,15 @@
 
 struct ApplicationProperties
 {
-    int someVar;
-    String anotherVar;
+    float tiltPercentage;
+    float rotationPercentage;
+    int motorMinimumThreshold;
 };
 
 inline ApplicationProperties loadProfileConfig() {
     ApplicationProperties config;
-    config.someVar = SOME_VAR;
-    config.anotherVar = ANOTHER_VAR;
+    config.tiltPercentage = TILT_PERCENTAGE;
+    config.rotationPercentage = ROTATION_PERCENTAGE;
+    config.motorMinimumThreshold = MOTOR_MINIMUM_THRESHOLD;
     return config;
 }

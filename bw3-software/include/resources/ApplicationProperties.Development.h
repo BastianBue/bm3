@@ -3,6 +3,7 @@
 // Profile selection based on build flags
 
 #if defined(PROFILE_DEVELOPMENT)
-constexpr int SOME_VAR = 42;
-constexpr const char* ANOTHER_VAR = "default";
+constexpr float TILT_PERCENTAGE = 0.93f;
+constexpr float ROTATION_PERCENTAGE = 0.5f;
+constexpr int MOTOR_MINIMUM_THRESHOLD = 120;
 #endif

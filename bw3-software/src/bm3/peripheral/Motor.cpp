@@ -7,8 +7,8 @@ namespace bm3
 {
     namespace peripheral
     {
-        Motor::Motor(PwmPin* pinA, PwmPin* pinB, PwmSink* sink, const char* descriptor)
-            : pinA(pinA), pinB(pinB), sink(sink), descriptor(descriptor)
+        Motor::Motor(PwmPin* pinA, PwmPin* pinB, PwmSink* sink, const char* descriptor, const ApplicationProperties& config)
+            : pinA(pinA), pinB(pinB), sink(sink), descriptor(descriptor), config(config)
         {
         }
 
@@ -28,7 +28,7 @@ namespace bm3
             }
 
             LOG(String(descriptor) + " forward: " + String(speed));
-            const int pwm = map(speed, 0, 100, 120, 255);
+            const int pwm = map(speed, 0, 100, config.motorMinimumThreshold, 255);
             sink->set(pinA, pwm);
             sink->set(pinB, 0);
         }
@@ -42,7 +42,7 @@ namespace bm3
             }
 
             LOG(String(descriptor) + " backward: " + String(speed));
-            const int pwm = map(speed, 0, 100, 120, 255);
+            const int pwm = map(speed, 0, 100, config.motorMinimumThreshold, 255);
             sink->set(pinA, 0);
             sink->set(pinB, pwm);
         }

@@ -4,6 +4,7 @@
 #include "bm3/peripheral/Motor.h"
 #include "bm3/peripheral/ReflectanceSensor.h"
 #include "bm3/peripheral/BallShooter.h"
+#include "resources/ApplicationProperties.h"
 
 using bm3::peripheral::Motor;
 using bm3::peripheral::ReflectanceSensor;
@@ -21,12 +22,12 @@ namespace bm3
                 Motor* rightMotor,
                 ReflectanceSensor* leftSensor,
                 ReflectanceSensor* rightSensor,
-                BallShooter* ballShooter
-            ) : InputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor, ballShooter)
-            {
-            }
-
+                BallShooter* ballShooter,
+                const ApplicationProperties& config
+            );
             void interpretInput(int vertical_slider, int horizontal_slider) override;
+        private:
+            ApplicationProperties config;
         };
     }
 }

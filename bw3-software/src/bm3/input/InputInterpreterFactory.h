@@ -18,7 +18,8 @@ public:
     static InputInterpreter* createInterpreter(
         State state,
         Motor* leftMotor,
-        Motor* rightMotor
+        Motor* rightMotor,
+        const ApplicationProperties& config
         // ReflectanceSensor* leftSensor,
         // ReflectanceSensor* rightSensor,
         // BallShooter* ballShooter

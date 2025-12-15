@@ -27,8 +27,8 @@ PwmPin rightPwmB(4);
 PwmPin leftPwmA(3);
 PwmPin leftPwmB(2);
 
-Motor leftMotor(&leftPwmA, &leftPwmB, &pwmSink, "left motor");
-Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink, "right motor");
+Motor leftMotor(&leftPwmA, &leftPwmB, &pwmSink, "left motor", config);
+Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink, "right motor", config);
 
 ReflectanceSensor leftSensor(1);
 ReflectanceSensor rightSensor(0);
@@ -40,11 +40,12 @@ void setup()
 #ifdef PROFILE_DEVELOPMENT
     Serial.begin(9600);
 #endif
-    LOG("Loaded profile config: someVar=");
-    LOG(config.someVar);
-    LOG(", anotherVar=");
-    LOG("Loaded profile config: someVar=");
-    LOG(config.anotherVar);
+    LOG("Loaded profile config: tiltPercentage=");
+    LOG(config.tiltPercentage);
+    LOG(", rotationPercentage=");
+    LOG(config.rotationPercentage);
+    LOG(", motorMinimumThreshold=");
+    LOG(config.motorMinimumThreshold);
 
     PWM_init();
 
@@ -68,11 +69,12 @@ void loop()
 #ifdef PROFILE_PRODUCTION
     if (RemoteXY.is_connected && RemoteXY.is_on)
     {
+
 #endif
-        stateMachine.update();
-        InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
-            stateMachine.getState(), &leftMotor, &rightMotor);
-        inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+    stateMachine.update();
+    InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
+        stateMachine.getState(), &leftMotor, &rightMotor, config);
+    inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
 #ifdef PROFILE_PRODUCTION
     }
     else

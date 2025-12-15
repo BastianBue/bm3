@@ -3,6 +3,7 @@
 #include <HardwareSerial.h>
 
 #include "../../../include/utility/Log.h"
+#include "resources/ApplicationProperties.h"
 
 using bm3::peripheral::Motor;
 using bm3::peripheral::ReflectanceSensor;
@@ -12,6 +13,17 @@ namespace bm3
 {
     namespace input
     {
+        SliderInputInterpreter::SliderInputInterpreter(
+            Motor* leftMotor,
+            Motor* rightMotor,
+            ReflectanceSensor* leftSensor,
+            ReflectanceSensor* rightSensor,
+            BallShooter* ballShooter,
+            const ApplicationProperties& config)
+            : InputInterpreter(leftMotor, rightMotor, leftSensor, rightSensor, ballShooter), config(config)
+        {
+        }
+
         void SliderInputInterpreter::interpretInput(const int vertical_slider, const int horizontal_slider)
         {
             LOG("SliderInputInterpreter::interpretInput");
@@ -35,9 +47,9 @@ namespace bm3
             const bool straight = !left && !right;
 
             const int speed = std::abs(vertical_slider);
-            const int tilt = static_cast<int>(std::abs(horizontal_slider) * 0.93 * speed / 100.0); // max tilt is 75% of speed
+            const int tilt = static_cast<int>(std::abs(horizontal_slider) * config.tiltPercentage * speed / 100.0); // max tilt is 75% of speed
 
-            const int rotation = static_cast<int>(std::abs(horizontal_slider) * 0.5); // rotation speed when standstill would be to fast at max
+            const int rotation = static_cast<int>(std::abs(horizontal_slider) * config.rotationPercentage); // rotation speed when standstill would be to fast at max
 
             int speed_left = 0;
             int speed_right = 0;

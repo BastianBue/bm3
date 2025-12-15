@@ -15,7 +15,8 @@ namespace bm3
         InputInterpreter* InputInterpreterFactory::createInterpreter(
             const State state,
             Motor* leftMotor,
-            Motor* rightMotor
+            Motor* rightMotor,
+            const ApplicationProperties& config
             // ReflectanceSensor* leftSensor,
             // ReflectanceSensor* rightSensor,
             // BallShooter* ballShooter
@@ -23,7 +24,7 @@ namespace bm3
         {
             if (state == State::DEFAULT_STATE)
             {
-                return new SliderInputInterpreter(leftMotor, rightMotor, nullptr, nullptr, nullptr);
+                return new SliderInputInterpreter(leftMotor, rightMotor, nullptr, nullptr, nullptr, config);
             }
             if (state == State::LINE_CROSSED)
             {
