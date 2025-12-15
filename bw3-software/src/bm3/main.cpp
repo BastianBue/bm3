@@ -52,14 +52,20 @@ void loop()
     RemoteXY_delay(1000);
     RemoteXY_Handler();
 
-    // if (RemoteXY.is_connected && RemoteXY.is_on)
-    // {
-    stateMachine.update();
-    InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
-        stateMachine.getState(), &leftMotor, &rightMotor);
-    inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+    if (RemoteXY.is_connected && RemoteXY.is_on)
+    {
+        stateMachine.update();
+        InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
+            stateMachine.getState(), &leftMotor, &rightMotor);
+        inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+    }
+    else
+    {
+        leftMotor.stop();
+        rightMotor.stop();
+    }
+
     pwmSink.flush(); // Synchronize all PWM updates
-    // }
 
     esp_task_wdt_reset(); // Pet the Dog
 }
