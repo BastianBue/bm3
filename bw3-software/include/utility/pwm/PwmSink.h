@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-#include "bm3/config/PwmPin.h"
+#include "PwmPin.h"
 
 class PwmSink {
 public:

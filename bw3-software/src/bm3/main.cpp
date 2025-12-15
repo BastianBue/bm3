@@ -1,16 +1,16 @@
 #include <Arduino.h>
 
 #include "bm3/peripheral/Motor.h"
-#include "bm3/config/RemoteXYConfig.h"
+#include "utility/pwm/PWMInit.h"
+#include "RemoteXYConfig.h"
 #include "esp_task_wdt.h"
 #include  "bm3/input/InputInterpreterFactory.h"
 #include  "bm3/state/State.h"
-#include "config/PWMInit.h"
-#include "bm3/config/PwmPin.h"
-#include "bm3/config/PwmSink.h"
+#include "utility/pwm/PwmSink.h"
+#include "utility/pwm/PwmPin.h"
 #include "state/StateMachine.h"
-#include "../../include/resources/ApplicationProperties.h"
-#include "../../include/utility/Log.h"
+#include "utility/Log.h"
+#include "resources/ApplicationProperties.h"
 
 using bm3::peripheral::Motor;
 using bm3::input::InputInterpreterFactory;

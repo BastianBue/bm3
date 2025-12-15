@@ -1,8 +1,8 @@
 #pragma once
 
 #include "bm3/peripheral/AbstractPeripheral.h"
-#include "bm3/config/PwmPin.h"
-#include "bm3/config/PwmSink.h"
+#include "../../../include/utility/pwm/PwmPin.h"
+#include "../../../include/utility/pwm/PwmSink.h"
 
 using bm3::peripheral::AbstractPeripheral;
 
