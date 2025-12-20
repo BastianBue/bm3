@@ -37,6 +37,8 @@ StateMachine stateMachine(State::DEFAULT_STATE, leftSensor, rightSensor);
 
 void setup()
 {
+    RemoteXY_Init();
+
 #ifdef PROFILE_DEVELOPMENT
     Serial.begin(9600);
 #endif
