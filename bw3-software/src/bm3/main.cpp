@@ -64,7 +64,7 @@ void loop()
     RemoteXY_Handler();
 
 #ifdef PROFILE_DEVELOPMENT
-    RemoteXY_delay(1000);
+    RemoteXY_delay(2000);
 #endif
 
 
