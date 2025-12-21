@@ -39,9 +39,8 @@ void setup()
 {
     RemoteXY_Init();
 
-#ifdef PROFILE_DEVELOPMENT
     Serial.begin(9600);
-#endif
+
     LOG("Loaded profile config: tiltPercentage=");
     LOG(config.tiltPercentage);
     LOG(", rotationPercentage=");
