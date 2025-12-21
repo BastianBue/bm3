@@ -1,0 +1,24 @@
+Index: src/bm3/main.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <Arduino.h>\n\n#include \"bm3/peripheral/Motor.h\"\n#include \"utility/pwm/PWMInit.h\"\n#include \"RemoteXYConfig.h\"\n#include \"esp_task_wdt.h\"\n#include  \"bm3/input/InputInterpreterFactory.h\"\n#include  \"bm3/state/State.h\"\n#include \"utility/pwm/PwmSink.h\"\n#include \"utility/pwm/PwmPin.h\"\n#include \"state/StateMachine.h\"\n#include \"utility/Log.h\"\n#include \"resources/ApplicationProperties.h\"\n\nusing bm3::peripheral::Motor;\nusing bm3::input::InputInterpreterFactory;\nusing bm3::input::InputInterpreter;\nusing bm3::state::State;\nusing bm3::state::StateMachine;\n\nApplicationProperties config = loadProfileConfig();\n\nPwmSink pwmSink;\n\nPwmPin rightPwmA(5);\nPwmPin rightPwmB(4);\nPwmPin leftPwmA(3);\nPwmPin leftPwmB(2);\n\nMotor leftMotor(&leftPwmA, &leftPwmB, &pwmSink, \"left motor\", config);\nMotor rightMotor(&rightPwmA, &rightPwmB, &pwmSink, \"right motor\", config);\n\nReflectanceSensor leftSensor(1);\nReflectanceSensor rightSensor(0);\n\nStateMachine stateMachine(State::DEFAULT_STATE, leftSensor, rightSensor);\n\nvoid setup()\n{\n#ifdef PROFILE_DEVELOPMENT\n    Serial.begin(9600);\n#endif\n    LOG(\"Loaded profile config: tiltPercentage=\");\n    LOG(config.tiltPercentage);\n    LOG(\", rotationPercentage=\");\n    LOG(config.rotationPercentage);\n    LOG(\", motorMinimumThreshold=\");\n    LOG(config.motorMinimumThreshold);\n\n    PWM_init();\n\n    // pwm pins are setup by the motor class\n    leftMotor.setup();\n    rightMotor.setup();\n\n    leftSensor.setup();\n    rightSensor.setup();\n}\n\nvoid loop()\n{\n    RemoteXY_Handler();\n\n#ifdef PROFILE_DEVELOPMENT\n    RemoteXY_delay(1000);\n#endif\n\n\n#ifdef PROFILE_PRODUCTION\n    if (RemoteXY.is_connected && RemoteXY.is_on)\n    {\n\n#endif\n    stateMachine.update();\n    InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(\n        stateMachine.getState(), &leftMotor, &rightMotor, config);\n    inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);\n#ifdef PROFILE_PRODUCTION\n    }\n    else\n    {\n        leftMotor.stop();\n        rightMotor.stop();\n    }\n#endif\n    pwmSink.flush(); // Synchronize all PWM updates\n\n    esp_task_wdt_reset(); // Pet the Dog\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/bm3/main.cpp b/src/bm3/main.cpp
+--- a/src/bm3/main.cpp	(revision 1491c9d678092e11b79aecab567c8321ac2dd8b1)
++++ b/src/bm3/main.cpp	(date 1766237214843)
+@@ -71,9 +71,13 @@
+     {
+ 
+ #endif
++
++    LOG("Statemachine update");
+     stateMachine.update();
++    LOG("interpreter creation");
+     InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
+         stateMachine.getState(), &leftMotor, &rightMotor, config);
++    LOG("interpretation");
+     inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
+ #ifdef PROFILE_PRODUCTION
+     }

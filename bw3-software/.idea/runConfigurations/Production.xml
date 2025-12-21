@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Production" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="bw3-software" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+    <envs>
+      <env name="PLATFORMIO_BUILD_FLAGS" value="-DPROFILE_PRODUCTION" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

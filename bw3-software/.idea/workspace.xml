@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+  </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="bw3-software" targetName="PlatformIO" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1518bb49-929f-4a7d-9b47-9e97cb4819d5" name="Changes" comment="feat: structured logs" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/bastian.bueld/CLionProjects/bm3/bw3-software" value="349YNye94qyFj3JInkOQHbCC4yf" />
+    </persistenceIdMap>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="esp32-c3-devkitm-1" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="fixit" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;project_26433_bot_ed869cbd0b6a2f1bd8d08ee54863fcef&quot;,
+      &quot;fullname&quot;: &quot;BM3&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://git.ide3.de/babue001/bm3.git&quot;,
+    &quot;second&quot;: &quot;a7eac835-c1d3-4c25-a5fe-5515dbbb124b&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/bm3/input/InputInterpreterFactory.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/bm3/peripheral/BallShooter.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/bm3/peripheral/Motor.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/bm3/peripheral/ReflectanceSensor.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/bm3/peripheral/ServoBallShooter.h" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="vLIuht2F" />
+  </component>
+  <component name="PlatformioLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="bw3-software" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="bw3-software" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2025" />
+    <option name="minorVersion" value="2.2" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="349YNye94qyFj3JInkOQHbCC4yf" />
+  <component name="ProjectStatusUIService">{
+  &quot;uiKindId&quot;: &quot;Widget&quot;
+}</component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Makefile Target.upload-debug.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.upload-prod.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PlatformIO.Debug.executor&quot;: &quot;Run&quot;,
+    &quot;PlatformIO.Development.executor&quot;: &quot;Run&quot;,
+    &quot;PlatformIO.PlatformIO.executor&quot;: &quot;Run&quot;,
+    &quot;PlatformIO.Production.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bastian.bueld/CLionProjects/bm3/bw3-software&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.5196759&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/python_scipts" />
+      <recent name="$PROJECT_DIR$/src/bm3/config" />
+      <recent name="$PROJECT_DIR$/src/bm3/state" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PlatformIO.Development">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="upload-debug" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="upload-debug" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="upload-debug" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="upload-debug" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="upload-prod" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="upload-prod" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="upload-prod" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="upload-prod" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Makefile Target.upload-debug" />
+      <item itemvalue="Makefile Target.upload-prod" />
+      <item itemvalue="PlatformIO.Development" />
+      <item itemvalue="PlatformIO.Production" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile Target.upload-prod" />
+        <item itemvalue="Makefile Target.upload-debug" />
+        <item itemvalue="Makefile Target.upload-prod" />
+        <item itemvalue="Makefile Target.upload-debug" />
+        <item itemvalue="Makefile Target.upload-prod" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1518bb49-929f-4a7d-9b47-9e97cb4819d5" name="Changes" comment="" />
+      <created>1760627219084</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760627219084</updated>
+      <workItem from="1760627220208" duration="2281000" />
+      <workItem from="1760632043103" duration="5156000" />
+      <workItem from="1760703217793" duration="10599000" />
+      <workItem from="1760713839942" duration="2139000" />
+      <workItem from="1761231092669" duration="1646000" />
+      <workItem from="1761558583532" duration="42000" />
+      <workItem from="1762168570203" duration="4579000" />
+      <workItem from="1763629429670" duration="148000" />
+      <workItem from="1763655430586" duration="7115000" />
+      <workItem from="1763973764522" duration="13319000" />
+      <workItem from="1764166003518" duration="5806000" />
+      <workItem from="1764338188074" duration="6854000" />
+      <workItem from="1764588043220" duration="5769000" />
+      <workItem from="1765555945675" duration="2853000" />
+      <workItem from="1766232867770" duration="8587000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: migrate project to platformio">
+      <option name="closed" value="true" />
+      <created>1760629277383</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760629277383</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: implemnet driving logic">
+      <option name="closed" value="true" />
+      <created>1760708697671</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1760708697671</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: make the controls flick back">
+      <option name="closed" value="true" />
+      <created>1760710891652</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1760710891652</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: use the PWM pins">
+      <option name="closed" value="true" />
+      <created>1760712541543</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1760712541543</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: implement driving">
+      <option name="closed" value="true" />
+      <created>1760713399844</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760713399844</updated>
+    </task>
+    <task id="LOCAL-00006" summary="only drive when remote is connected">
+      <option name="closed" value="true" />
+      <created>1760715189945</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760715189945</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: invert direction">
+      <option name="closed" value="true" />
+      <created>1763657441204</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763657441204</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: wip">
+      <option name="closed" value="true" />
+      <created>1763661601854</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1763661601854</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: input interpreter">
+      <option name="closed" value="true" />
+      <created>1764166174585</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764166174585</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix: compilation error">
+      <option name="closed" value="true" />
+      <created>1766241386199</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1766241386199</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: structured logs">
+      <option name="closed" value="true" />
+      <created>1766242602945</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766242602945</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: migrate project to platformio" />
+    <MESSAGE value="feat: implemnet driving logic" />
+    <MESSAGE value="feat: make the controls flick back" />
+    <MESSAGE value="feat: use the PWM pins" />
+    <MESSAGE value="feat: implement driving" />
+    <MESSAGE value="only drive when remote is connected" />
+    <MESSAGE value="feat: invert direction" />
+    <MESSAGE value="feat: wip" />
+    <MESSAGE value="feat: input interpreter" />
+    <MESSAGE value="fix: compilation error" />
+    <MESSAGE value="feat: structured logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: structured logs" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
