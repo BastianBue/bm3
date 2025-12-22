@@ -42,26 +42,28 @@ namespace bm3
             const bool forwards = vertical_slider > 0;
             const bool standstill = !forwards && !backwards;
 
-            const bool left = horizontal_slider < 0;
-            const bool right = horizontal_slider > 0;
+            const bool left = horizontal_slider > 0;
+            const bool right = horizontal_slider < 0;
             const bool straight = !left && !right;
 
             const int speed = std::abs(vertical_slider);
-            const int tilt = static_cast<int>(std::abs(horizontal_slider) * config.tiltPercentage * speed / 100.0); // max tilt is 75% of speed
+            const int tilt = static_cast<int>(std::abs(horizontal_slider) * config.tiltPercentage * speed / 100.0);
+            // max tilt is 75% of speed
 
-            const int rotation = static_cast<int>(std::abs(horizontal_slider) * config.rotationPercentage); // rotation speed when standstill would be to fast at max
+            const int rotation = static_cast<int>(std::abs(horizontal_slider) * config.rotationPercentage);
+            // rotation speed when standstill would be to fast at max
 
             int speed_left = 0;
             int speed_right = 0;
             if (left)
             {
-                speed_left = speed;
-                speed_right = speed - tilt;
+                speed_left = speed - tilt;
+                speed_right = speed;
             }
             else if (right)
             {
-                speed_left = speed - tilt;
-                speed_right = speed;
+                speed_left = speed;
+                speed_right = speed - tilt;
             }
             else if (straight)
             {
@@ -81,8 +83,8 @@ namespace bm3
             }
             else if (standstill && right)
             {
-                leftMotor->backward(rotation);
-                rightMotor->forward(rotation);
+                leftMotor->forward(rotation);
+                rightMotor->backward(rotation);
             }
             else if (standstill && left)
             {

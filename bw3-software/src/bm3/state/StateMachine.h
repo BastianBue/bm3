@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 #include "bm3/input/InputInterpreterFactory.h"
+#include "resources/ApplicationProperties.h"
 
 namespace bm3
 {
@@ -9,8 +10,9 @@ namespace bm3
         class StateMachine
         {
         public:
-            explicit StateMachine(State initialState, ReflectanceSensor leftReflectanceSensor,
-                                  ReflectanceSensor rightReflectanceSensor);
+            StateMachine(State initialState, ReflectanceSensor leftReflectanceSensor,
+                         ReflectanceSensor rightReflectanceSensor,
+                         const ApplicationProperties& appProperties);
             void update();
             State getState() const;
         private:
@@ -19,6 +21,7 @@ namespace bm3
 
             ReflectanceSensor leftReflectanceSensor;
             ReflectanceSensor rightReflectanceSensor;
+            ApplicationProperties appProperties;
         };
     }
 }

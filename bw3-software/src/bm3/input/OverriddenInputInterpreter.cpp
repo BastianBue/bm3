@@ -14,10 +14,8 @@ namespace bm3
         {
             LOG("OverriddenInputInterpreter::interpretInput");
             // Example: stop both motors when overridden
-            // if (leftMotor) leftMotor->backward(50);
-            // if (rightMotor) rightMotor->backward(50);
-            if (leftMotor) leftMotor->stop();
-            if (rightMotor) rightMotor->stop();
+            if (leftMotor) leftMotor->backward(50);
+            if (rightMotor) rightMotor->backward(50);
         }
     }
 }

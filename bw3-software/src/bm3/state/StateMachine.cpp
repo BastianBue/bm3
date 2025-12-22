@@ -12,9 +12,11 @@ namespace bm3
     namespace state
     {
         StateMachine::StateMachine(State initialState, ReflectanceSensor leftReflectanceSensor,
-                                   ReflectanceSensor rightReflectanceSensor) :
+                                   ReflectanceSensor rightReflectanceSensor,
+                                   const ApplicationProperties& appProperties) :
             leftReflectanceSensor(std::move(leftReflectanceSensor)),
-            rightReflectanceSensor(std::move(rightReflectanceSensor))
+            rightReflectanceSensor(std::move(rightReflectanceSensor)),
+            appProperties(appProperties)
         {
             state = initialState;
             lineCrossedAt = millis();
@@ -25,23 +27,26 @@ namespace bm3
             leftReflectanceSensor.update();
             rightReflectanceSensor.update();
 
-            if (this->state == State::LINE_CROSSED)
+            if (!appProperties.disalbeStateMachine)
             {
-                unsigned long elapsed = millis() - lineCrossedAt;
-                if (elapsed >= 2000)
+                if (this->state == State::LINE_CROSSED)
                 {
-                    LOG("2000ms elapsed, entering Default State");
-                    this->state = State::DEFAULT_STATE;
+                    unsigned long elapsed = millis() - lineCrossedAt;
+                    if (elapsed >= 2000)
+                    {
+                        LOG("2000ms elapsed, entering Default State");
+                        this->state = State::DEFAULT_STATE;
+                    }
                 }
-            }
 
-            if (this->state == State::DEFAULT_STATE)
-            {
-                if (leftReflectanceSensor.isDark() || rightReflectanceSensor.isDark())
+                if (this->state == State::DEFAULT_STATE)
                 {
-                    this->state = State::LINE_CROSSED;
-                    this->lineCrossedAt = millis();
-                    LOG("Line crossed, entering line crossed state");
+                    if (leftReflectanceSensor.isDark() || rightReflectanceSensor.isDark())
+                    {
+                        this->state = State::LINE_CROSSED;
+                        this->lineCrossedAt = millis();
+                        LOG("Line crossed, entering line crossed state");
+                    }
                 }
             }
         }

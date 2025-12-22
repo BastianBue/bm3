@@ -33,7 +33,7 @@ Motor rightMotor(&rightPwmA, &rightPwmB, &pwmSink, "right motor", config);
 ReflectanceSensor leftSensor(1);
 ReflectanceSensor rightSensor(0);
 
-StateMachine stateMachine(State::DEFAULT_STATE, leftSensor, rightSensor);
+StateMachine stateMachine(State::DEFAULT_STATE, leftSensor, rightSensor, config);
 
 void setup()
 {
@@ -71,7 +71,9 @@ void loop()
     if (RemoteXY.is_connected && RemoteXY.is_on)
     {
 
+
 #endif
+    LOG("is connected: " + String(RemoteXY.is_connected) + "   is on: " + String(RemoteXY.is_on));
     stateMachine.update();
     InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
         stateMachine.getState(), &leftMotor, &rightMotor, config);

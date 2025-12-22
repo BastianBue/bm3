@@ -5,6 +5,7 @@ struct ApplicationProperties
     float tiltPercentage;
     float rotationPercentage;
     int motorMinimumThreshold;
+    bool disalbeStateMachine;
 };
 
 inline ApplicationProperties loadProfileConfig()
@@ -13,5 +14,6 @@ inline ApplicationProperties loadProfileConfig()
     config.tiltPercentage = 0.93f;
     config.rotationPercentage = 0.5f;
     config.motorMinimumThreshold = 120;
+    config.disalbeStateMachine = true;
     return config;
 }
