@@ -88,5 +88,15 @@ void loop()
 #endif
     pwmSink.flush(); // Synchronize all PWM updates
 
+    analogWrite(20, 255);
+
+    if (RemoteXY.button_01 == 1)
+    {
+        analogWrite(21, 255);
+    }else
+    {
+        analogWrite(21, 0);
+    }
+
     esp_task_wdt_reset(); // Pet the Dog
 }

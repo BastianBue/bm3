@@ -38,7 +38,6 @@ public:
         {
             if (entry.pin)
             {
-                LOG("Writing analog value: " +String(entry.value)+ + " To pin: "+ String(entry.pin->pin_number));
                 entry.pin->analogWrite(entry.value);
             }
         }

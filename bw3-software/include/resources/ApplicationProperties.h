@@ -12,8 +12,8 @@ inline ApplicationProperties loadProfileConfig()
 {
     ApplicationProperties config;
     config.tiltPercentage = 0.93f;
-    config.rotationPercentage = 0.5f;
+    config.rotationPercentage = 0.2f;
     config.motorMinimumThreshold = 120;
-    config.disalbeStateMachine = true;
+    config.disalbeStateMachine = false;
     return config;
 }
