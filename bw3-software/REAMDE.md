@@ -34,22 +34,23 @@ Diese Anleitung erklärt, wie du dieses Repository mit PlatformIO und dem CLion-
    - Stelle sicher, dass der richtige serielle Port in PlatformIO ausgewählt ist (falls nötig).
 
 5. **Projekt bauen**
-   - Klicke auf das PlatformIO-Build-Symbol (Haken) in der CLion-Toolbar oder führe aus:
+   - **Wichtig:** Verwende ausschließlich das PlatformIO Core CLI-Tool (`pio`) zum Bauen und Hochladen der Firmware, um undefiniertes Verhalten zu vermeiden. Die Nutzung von IDE-Buttons oder anderen Tools kann zu Problemen führen.
+   - Baue das Projekt mit:
      ```sh
      pio run -e development   # oder -e production
      ```
 
 6. **Firmware hochladen**
-   - Klicke auf das PlatformIO-Upload-Symbol (Pfeil) oder führe aus:
+   - Lade die Firmware mit dem PlatformIO Core CLI-Tool hoch:
      ```sh
-     pio run -e development -t upload
+     pio run -e development -t upload   # oder -e production -t upload
      ```
    - Die Firmware wird auf den Mikrocontroller geflasht.
 
 7. **Serielle Ausgabe überwachen (optional)**
-   - Nutze den PlatformIO Serial Monitor (Stecker-Symbol) oder führe aus:
+   - Überwache die serielle Ausgabe mit dem PlatformIO Core CLI-Tool:
      ```sh
-     pio device monitor -e development
+     pio device monitor -e development   # oder -e production
      ```
 
 ## Diagramme
@@ -60,4 +61,8 @@ Diese Anleitung erklärt, wie du dieses Repository mit PlatformIO und dem CLion-
 ## Hinweise
 - Um das aktive Profil zu wechseln, einfach ein anderes Environment in der PlatformIO-Toolbar wählen, die entsprechende Run Configuration nutzen oder den `-e`-Parameter bei `pio`-Befehlen verwenden.
 - Entwicklungs-spezifische Logs und Features sind nur im `development`-Profil aktiv.
+- **Wichtig:** Baue und lade die Firmware ausschließlich mit dem PlatformIO Core CLI-Tool (`pio`). Die Nutzung von IDE-Buttons oder anderen Tools kann zu undefiniertem Verhalten führen.
+- Die Targets `upload` und `monitor` können direkt mit dem CLI-Tool verwendet werden:
+  - Hochladen: `pio run -e <env> -t upload`
+  - Serieller Monitor: `pio device monitor -e <env>`
 - Weitere Details findest du in der [PlatformIO-Dokumentation](https://docs.platformio.org/).

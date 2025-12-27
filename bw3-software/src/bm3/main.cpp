@@ -41,12 +41,25 @@ void setup()
 
     Serial.begin(9600);
 
-    LOG("Loaded profile config: tiltPercentage=");
-    LOG(config.tiltPercentage);
-    LOG(", rotationPercentage=");
-    LOG(config.rotationPercentage);
-    LOG(", motorMinimumThreshold=");
-    LOG(config.motorMinimumThreshold);
+    Serial.println(String("PROFILE_PRODUCTION: ") +
+#ifdef PROFILE_PRODUCTION
+        "true"
+#else
+        "false"
+#endif
+    );
+
+    Serial.println(String("PROFILE_DEVELOPMENT: ") +
+#ifdef PROFILE_DEVELOPMENT
+        "true"
+#else
+        "false"
+#endif
+    );
+
+    LOG("Loaded profile config: tiltPercentage=" + String(config.tiltPercentage));
+    LOG(", rotationPercentage=" + String(config.rotationPercentage));
+    LOG(", motorMinimumThreshold=" + String(config.motorMinimumThreshold));
 
     PWM_init();
 
@@ -75,7 +88,6 @@ void loop()
     {
 
 
-
 #endif
     LOG("is connected: " + String(RemoteXY.is_connected) + "   is on: " + String(RemoteXY.is_on));
     stateMachine.update();
@@ -100,7 +112,7 @@ void loop()
     }
     else
     {
-        digitalWrite(7, HIGH);
+        digitalWrite(7, LOW);
     }
 
     esp_task_wdt_reset(); // Pet the Dog

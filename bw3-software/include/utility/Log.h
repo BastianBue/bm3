@@ -6,5 +6,5 @@
 #endif
 
 #ifdef PROFILE_PRODUCTION
-#define LOG(msg) Serial.println(msg)
+#define LOG(msg)
 #endif
