@@ -56,6 +56,9 @@ void setup()
 
     leftSensor.setup();
     rightSensor.setup();
+
+    pinMode(6, OUTPUT);
+    pinMode(7, OUTPUT);
 }
 
 void loop()
@@ -70,6 +73,7 @@ void loop()
 #ifdef PROFILE_PRODUCTION
     if (RemoteXY.is_connected && RemoteXY.is_on)
     {
+
 
 
 #endif
@@ -88,14 +92,15 @@ void loop()
 #endif
     pwmSink.flush(); // Synchronize all PWM updates
 
-    analogWrite(20, 255);
+    digitalWrite(6, HIGH);
 
     if (RemoteXY.button_01 == 1)
     {
-        analogWrite(21, 255);
-    }else
+        digitalWrite(7, HIGH);
+    }
+    else
     {
-        analogWrite(21, 0);
+        digitalWrite(7, HIGH);
     }
 
     esp_task_wdt_reset(); // Pet the Dog
