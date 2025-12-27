@@ -1,8 +1,10 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
 #include <random>
 #include "PwmPin.h"
+#include "utility/Log.h"
 
 class PwmSink
 {
