@@ -2,7 +2,6 @@
 
 #include <HardwareSerial.h>
 
-#include "../../../include/utility/Log.h"
 #include "resources/ApplicationProperties.h"
 
 using bm3::peripheral::Motor;
@@ -26,15 +25,12 @@ namespace bm3
 
         void SliderInputInterpreter::interpretInput(const int vertical_slider, const int horizontal_slider)
         {
-            LOG("SliderInputInterpreter::interpretInput");
             if (100 < vertical_slider || vertical_slider < -100)
             {
-                LOG("Vertical Slider out of Bounds: " + String(vertical_slider));
                 return;
             }
             if (100 < horizontal_slider || horizontal_slider < -100)
             {
-                LOG("Horizontal Slider out of Bounds: " + String(horizontal_slider));
                 return;
             }
 

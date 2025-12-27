@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "bm3/peripheral/Motor.h"
 
-#include "../../../include/utility/Log.h"
 
 namespace bm3
 {
@@ -14,7 +13,6 @@ namespace bm3
 
         void Motor::setup()
         {
-            LOG(String(descriptor) + ": setup");
             pinA->setup();
             pinB->setup();
         }
@@ -23,11 +21,9 @@ namespace bm3
         {
             if (speed < 0 || speed > 100)
             {
-                LOG(String(descriptor) + ": forward: invalid speed: " + String(speed));
                 return;
             }
 
-            LOG(String(descriptor) + " forward: " + String(speed));
             const int pwm = map(speed, 0, 100, config.motorMinimumThreshold, 255);
             sink->set(pinA, pwm);
             sink->set(pinB, 0);
@@ -37,11 +33,9 @@ namespace bm3
         {
             if (speed < 0 || speed > 100)
             {
-                LOG(String(descriptor) + ": backward: invalid speed: " + String(speed));
                 return;
             }
 
-            LOG(String(descriptor) + " backward: " + String(speed));
             const int pwm = map(speed, 0, 100, config.motorMinimumThreshold, 255);
             sink->set(pinA, 0);
             sink->set(pinB, pwm);

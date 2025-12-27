@@ -2,7 +2,6 @@
 
 #include <utility>
 
-#include "../../../include/utility/Log.h"
 #include "bm3/state/State.h"
 
 using bm3::state::State;
@@ -34,7 +33,6 @@ namespace bm3
                     unsigned long elapsed = millis() - lineCrossedAt;
                     if (elapsed >= 2000)
                     {
-                        LOG("2000ms elapsed, entering Default State");
                         this->state = State::DEFAULT_STATE;
                     }
                 }
@@ -45,7 +43,6 @@ namespace bm3
                     {
                         this->state = State::LINE_CROSSED;
                         this->lineCrossedAt = millis();
-                        LOG("Line crossed, entering line crossed state");
                     }
                 }
             }

@@ -9,7 +9,6 @@
 #include "utility/pwm/PwmSink.h"
 #include "utility/pwm/PwmPin.h"
 #include "state/StateMachine.h"
-#include "utility/Log.h"
 #include "resources/ApplicationProperties.h"
 
 using bm3::peripheral::Motor;
@@ -41,13 +40,6 @@ void setup()
 
     Serial.begin(9600);
 
-    LOG("Loaded profile config: tiltPercentage=");
-    LOG(config.tiltPercentage);
-    LOG(", rotationPercentage=");
-    LOG(config.rotationPercentage);
-    LOG(", motorMinimumThreshold=");
-    LOG(config.motorMinimumThreshold);
-
     PWM_init();
 
     // pwm pins are setup by the motor class
@@ -77,10 +69,10 @@ void loop()
 
 
 #endif
-    LOG("is connected: " + String(RemoteXY.is_connected) + "   is on: " + String(RemoteXY.is_on));
     stateMachine.update();
     InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
         stateMachine.getState(), &leftMotor, &rightMotor, config);
+    Serial.println("looping");
     inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);
 #ifdef PROFILE_PRODUCTION
     }
