@@ -23,12 +23,12 @@ namespace bm3
 
         bool ReflectanceSensor::isDark() const
         {
-            return reflectanceValue > 800;
+            return reflectanceValue > 3000;
         }
 
         bool ReflectanceSensor::isLight() const
         {
-            return reflectanceValue <= 800;
+            return reflectanceValue <= 3000;
         }
 
         void ReflectanceSensor::setup()

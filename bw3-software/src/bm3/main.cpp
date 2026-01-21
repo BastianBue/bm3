@@ -4,6 +4,7 @@
 #include "utility/pwm/PWMInit.h"
 #include "RemoteXYConfig.h"
 #include "esp_task_wdt.h"
+#include "RemoteXY.h"
 #include  "bm3/input/InputInterpreterFactory.h"
 #include  "bm3/state/State.h"
 #include "utility/pwm/PwmSink.h"
@@ -79,7 +80,6 @@ void loop()
     RemoteXY_Handler();
 
 #ifdef PROFILE_DEVELOPMENT
-    RemoteXY_delay(2000);
 #endif
 
 
