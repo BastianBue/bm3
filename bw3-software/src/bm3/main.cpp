@@ -4,7 +4,6 @@
 #include "utility/pwm/PWMInit.h"
 #include "RemoteXYConfig.h"
 #include "esp_task_wdt.h"
-#include "RemoteXY.h"
 #include  "bm3/input/InputInterpreterFactory.h"
 #include  "bm3/state/State.h"
 #include "utility/pwm/PwmSink.h"
@@ -84,13 +83,11 @@ void loop()
 
 
 #ifdef PROFILE_PRODUCTION
-    if (RemoteXY.is_connected && RemoteXY.is_on)
+    if (RemoteXY.is_connected )
     {
-
-
 #endif
     LOG("is connected: " + String(RemoteXY.is_connected) + "   is on: " + String(RemoteXY.is_on));
-    stateMachine.update();
+    stateMachine.update(RemoteXY.is_on);
     InputInterpreter* inputInterpreter = InputInterpreterFactory::createInterpreter(
         stateMachine.getState(), &leftMotor, &rightMotor, config);
     inputInterpreter->interpretInput(RemoteXY.vertical_slider, RemoteXY.horizontal_slider);

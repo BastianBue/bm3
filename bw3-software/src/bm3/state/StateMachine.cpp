@@ -22,12 +22,12 @@ namespace bm3
             lineCrossedAt = millis();
         }
 
-        void StateMachine::update()
+        void StateMachine::update(const bool on)
         {
             leftReflectanceSensor.update();
             rightReflectanceSensor.update();
 
-            if (!appProperties.disalbeStateMachine)
+            if (!appProperties.disalbeStateMachine && on)
             {
                 if (this->state == State::LINE_CROSSED)
                 {
@@ -48,6 +48,11 @@ namespace bm3
                         LOG("Line crossed, entering line crossed state");
                     }
                 }
+            }
+
+            if (!on)
+                this->state = State::DEFAULT_STATE;
+            {
             }
         }
 

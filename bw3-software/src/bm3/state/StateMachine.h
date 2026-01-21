@@ -13,7 +13,7 @@ namespace bm3
             StateMachine(State initialState, ReflectanceSensor leftReflectanceSensor,
                          ReflectanceSensor rightReflectanceSensor,
                          const ApplicationProperties& appProperties);
-            void update();
+            void update(bool on);
             State getState() const;
         private:
             State state;
